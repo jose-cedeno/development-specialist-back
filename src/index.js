@@ -1,5 +1,5 @@
 const app = require('./app');
-require('./db/db');
+require('./config/db/db');
 const PORT = 3001;
 
 
