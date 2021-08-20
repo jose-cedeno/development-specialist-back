@@ -1,5 +1,5 @@
 const User = require('../domain/User');
-const response = require('../../helpers/response');
+const response = require('../../utils/response');
 const {findAndThrow, comparePassword,generateHash} = require('../utility/userUtility');
 
 const signup = async (req, res) => {
