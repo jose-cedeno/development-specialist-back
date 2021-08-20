@@ -5,11 +5,11 @@ const jwt = require('jsonwebtoken');
 
 const findAndThrow = async (email, document, phone) => {
     const user = await User.findOne({
-         $or:[
-             {email},
-             {document},
-             {phone}
-         ]
+            $or: [
+                {email},
+                {document},
+                {phone}
+            ]
         }
     );
 
@@ -20,12 +20,17 @@ const findAndThrow = async (email, document, phone) => {
 };
 
 const comparePassword = async (password, user) => {
+    if (user !== null) {
+        if (await bcrypt.compare(password, user.password)) {
+            return generateToken(user._id);
+        }
 
-    if (await bcrypt.compare(password, user.password)) {
-        return generateToken(user._id);
-    } else {
         throw new CustomError('Contraseña invalida.')
     }
+    else{
+        throw new CustomError('Usuario o contraseña invalida.')
+    }
+
 }
 const generateHash = async password => bcrypt.hashSync(password, 10);
 

@@ -1,13 +1,12 @@
 const User = require('../domain/User');
 const response = require('../../utils/response');
-const {findAndThrow, comparePassword,generateHash} = require('../utility/userUtility');
-
+const {findAndThrow, comparePassword, generateHash} = require('../utility/userUtility');
 const signup = async (req, res) => {
     try {
 
         const {email, password, name, document, phone} = req.body;
 
-        await findAndThrow(email,document,phone);
+        await findAndThrow(email, document, phone);
         const hash = await generateHash(password);
 
         const user = new User({
