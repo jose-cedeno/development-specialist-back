@@ -1,5 +1,4 @@
 const {Schema, model} = require('mongoose');
-const CustomError = require('../../utils/error/CustomError');
 
 const UserSchema = new Schema({
     name: {
@@ -27,13 +26,16 @@ const UserSchema = new Schema({
     },
     balance: {
         type: Number,
-        default: 0
+        default: 10
     }
 });
 
 UserSchema.post('save', (err, res, next) => {
     if (err.name === 'MongoError' && err.code === 11000) {
-        return next(new CustomError('User already exist', 400));
+        return next({message:"User Already exist. Another account have the same email, document or phone.'"});
+    }
+    else if (err.name==='MongoError') {
+        return next({message:"Error al crear el cliente"});
     }
     next();
 });

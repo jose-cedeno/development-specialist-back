@@ -7,8 +7,7 @@ const signup = async (req, res) => {
 
         const {email, password, name, document, phone} = req.body;
 
-        findAndThrow(email);
-
+        await findAndThrow(email,document,phone);
         const hash = await generateHash(password);
 
         const user = new User({
@@ -18,8 +17,8 @@ const signup = async (req, res) => {
             document: document,
             phone: phone
         });
-
         await user.save();
+
 
         return res.status(201).send(response(true, user));
     } catch (e) {
@@ -32,7 +31,6 @@ const login = async (req, res) => {
 
     try {
         const {email, password} = req.body;
-
         const user = await User.findOne({email: email});
 
         const token = await comparePassword(password, user);

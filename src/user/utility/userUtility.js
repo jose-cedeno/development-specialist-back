@@ -3,10 +3,19 @@ const CustomError = require("../../utils/error/CustomError");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const findAndThrow = (email) => {
-    const user = User.findOne(email);
-    if (user) {
-        throw new CustomError('User Already exist.');
+const findAndThrow = async (email, document, phone) => {
+    const user = await User.findOne({
+         $or:[
+             {email},
+             {document},
+             {phone}
+         ]
+        }
+    );
+
+
+    if (user !== null) {
+        throw new CustomError('User Already exist. Another account have the same email, document or phone.');
     }
 };
 
