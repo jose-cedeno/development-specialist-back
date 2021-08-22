@@ -1,0 +1,39 @@
+{
+  "name": "software-specialist",
+  "version": "1.0.0",
+  "description": "Prueba tecnica para el cargo de developer specialist",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jose-cedeno/development-specialist-back.git"
+  },
+  "keywords": [
+    "mern",
+    "mongo",
+    "node"
+  ],
+  "author": "Jose Cedeno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jose-cedeno/development-specialist-back/issues"
+  },
+  "homepage": "https://github.com/jose-cedeno/development-specialist-back#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.7",
+    "nodemailer": "^6.6.3",
+    "nodemon": "^2.0.12"
+  },
+  "devDependencies": {
+    "mongodb": "^4.1.0"
+  }
+}
