@@ -17,4 +17,10 @@ En este proyecto se encuentra la api para exponer los servicios relacionados a f
 
 ## End-Points 📋
 
-Para una mayor documentación relacionado a los servicios se puede observar [ACA](https://documenter.getpostman.com/view/10788411/TzzDKF8u)
+Para una mayor documentación relacionado a los servicios se puede observar [ACA](https://documenter.getpostman.com/view/10788411/TzzDKF8u
+
+## Diagramas 
+
+
+![Flujo de pagos](https://user-images.githubusercontent.com/72511676/130369186-5c604b43-c49c-4f65-964f-62a67a1f24d5.png)
+
