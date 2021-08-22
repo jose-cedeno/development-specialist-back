@@ -1,0 +1,773 @@
+{
+	"info": {
+		"_postman_id": "17bc7ad4-d967-4f38-ae6c-8baeadf37609",
+		"name": "Developer Specialist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "registro y login",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"josejecr99@gmail.com\",\r\n    \"password\": \"chuo1997\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"login"
+							]
+						},
+						"description": "# Login\n\nMétodo que requiere del campo email y password, y retornara un campo bearer toquen, para realizar la autenticación en todos los servicios."
+					},
+					"response": [
+						{
+							"name": "{200} login ok.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"josejecr98@gmail.com\",\r\n    \"password\": \"chuo1997\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "173"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ad-xG64/lpzatcH4SjWUbKCAO3YHxA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Aug 2021 18:54:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"data\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMWZlNDRjNjJkZTkzZjg2OGQ1MzM4NyIsImlhdCI6MTYyOTY1ODQ5OX0.51h9PCFCFdY3nuqthuVLQLhx8qRfWBlMSfPl406joOY\"\n}"
+						},
+						{
+							"name": "{400} Invalid password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"josejecr98@gmail.com\",\r\n    \"password\": \"chuo19917\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-LQWM+VpxAO9oL7XvSBye9jPn8eo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Aug 2021 19:23:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"data\": {\n        \"message\": \"Contraseña invalida.\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"josejecr97@gmail.com\",\r\n    \"password\":\"chuo1997\",\r\n    \"name\":\"Jose Cedeno\",\r\n    \"document\":25943202,\r\n    \"phone\":\"4149434721\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"signup"
+							]
+						},
+						"description": "# Crear usuario\n\nA través de este método se realiza la creación de usuarios en el servicio.\n\n| Atributo | Tipo de Dato |                Descripción                |\n|:--------:|:------------:|:-----------------------------------------:|\n|   email  | String-Email |              Email de usuario             |\n| password |    String    |                 Contraseña                |\n|   name   |    String    |             Nombre de usuario             |\n| document |    Number    | Numero de documento, cedula de identidad. |\n|   phone  |    String    |       Numero telefonico del usuario.      |"
+					},
+					"response": [
+						{
+							"name": "{400} User already exist.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"josejecr98@gmail.com\",\r\n    \"password\":\"chuo1997\",\r\n    \"name\":\"Jose Cedeno\",\r\n    \"document\":25944202,\r\n    \"phone\":\"4149434722\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/signup",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"signup"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-iqXkWOJPfalUCvGpyy9+oLuwcdo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Aug 2021 19:29:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"data\": {\n        \"message\": \"User Already exist. Another account have the same email, document or phone.\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "facturas",
+			"item": [
+				{
+					"name": "Crear factura",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMWZiZTg2YzZjOTA3ZjM0ODc2ZGZlMSIsImlhdCI6MTYyOTY1MTI1Mn0.vY8FFsR1v4KBJM6npF01SGodufiiXtTw84Kp9j4ZgbM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Licuadora\",\r\n    \"description\": \"Licuadora de 18 potencias.\",\r\n    \"subtotal\": 30,\r\n    \"discount\": 50,\r\n    \"buyerEmail\": \"josejecr299@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/bill",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"bill"
+							]
+						},
+						"description": "# Crear Factura\n\nMétodo para utilizar para la creación de facturas.\n\n|   Atributo  |  Tipo de Dato |                    Descripción                    |\n|:-----------:|:-------------:|:-------------------------------------------------:|\n|     name    |     String    |                Nombre del producto                |\n| description |     String    |             Descripción del producto              |\n|   subtotal  |     Number    |                 Valor del producto                |\n|   discount  |     Number    | Valor en % a descontar del subtotal del producto. |\n|  buyerEmail | String/Email. |  Email del usuario al que se realizara la venta.  |"
+					},
+					"response": [
+						{
+							"name": "{201} Created .",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Licuadora\",\r\n    \"description\":\"Licuadora de 18 potencias.\",\r\n    \"subtotal\":30,\r\n    \"discount\":50,\r\n    \"buyerEmail\":\"josejecr98@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/bill",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"bill"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "252"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"fc-GzyNsiC95cvZYeBGPmZSw/4nCiE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Aug 2021 18:24:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"data\": {\n        \"paid\": false,\n        \"_id\": \"61229651eab71999c8d376a8\",\n        \"name\": \"Licuadora\",\n        \"description\": \"Licuadora de 18 potencias.\",\n        \"subtotal\": 30,\n        \"discount\": 50,\n        \"total\": 15,\n        \"sellerEmail\": \"josejecr97@gmail.com\",\n        \"buyerEmail\": \"josejecr98@gmail.com\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "{400} Invalid Body",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Licuadora\",\r\n    \"description\":\"Licuadora de 18 potencias.\",\r\n    \"subtotal\":30,\r\n    \"discount\":50\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/bill",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"bill"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-G+vsT3OOdrd+s0ruzTTNm5B5uxo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Aug 2021 18:25:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": \"Buyer email must be string\"\n}"
+						},
+						{
+							"name": "{500} Usuario comprador no existe",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Licuadora\",\r\n    \"description\": \"Licuadora de 18 potencias.\",\r\n    \"subtotal\": 30,\r\n    \"discount\": 50,\r\n    \"buyerEmail\": \"josejecr299@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/bill",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"bill"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-X5ThRud8/DYB0H6hVUnyxWUDdr4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Aug 2021 18:36:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"data\": {\n        \"message\": \"No existe el comprador en la base de datos.\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Pagar factura",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/bill/pay/61229611b82d2df170a79f4f",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"bill",
+								"pay",
+								"61229611b82d2df170a79f4f"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "{500} No existe factura",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/bill/pay/61229651eab71999c8d376a7",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"bill",
+										"pay",
+										"61229651eab71999c8d376a7"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-wi+irfZvgiZ9EA8A5fc320PVpkQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Aug 2021 19:17:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"data\": {\n        \"message\": \"No existe la factura.\"\n    }\n}"
+						},
+						{
+							"name": "{200} Paid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/bill/pay/61229651eab71999c8d376a8",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"bill",
+										"pay",
+										"61229651eab71999c8d376a8"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "251"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"fb-Vuf98uiVO/3scP3oHno/0blTerU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Aug 2021 19:20:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"data\": {\n        \"paid\": true,\n        \"_id\": \"61229651eab71999c8d376a8\",\n        \"name\": \"Licuadora\",\n        \"description\": \"Licuadora de 18 potencias.\",\n        \"subtotal\": 30,\n        \"discount\": 50,\n        \"total\": 15,\n        \"sellerEmail\": \"josejecr97@gmail.com\",\n        \"buyerEmail\": \"josejecr98@gmail.com\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "{500} Already paid.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/bill/pay/61229651eab71999c8d376a8",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"bill",
+										"pay",
+										"61229651eab71999c8d376a8"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "72"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"48-zCW1wM6rC4XnBcUKulufQ3SQKrE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Aug 2021 19:21:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"data\": {\n        \"message\": \"La factura ya se encuentra pagada.\"\n    }\n}"
+						},
+						{
+							"name": "{500} User without money.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/bill/pay/61229651eab71999c8d376a8",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"bill",
+										"pay",
+										"61229651eab71999c8d376a8"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "96"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"60-nntqzXMFtZlOOuB/hSoyckW8e/I\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Aug 2021 19:22:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"data\": {\n        \"message\": \"El usuario pagador no tiene capital para realizar el pago.\"\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMWZlNDRjNjJkZTkzZjg2OGQ1MzM4NyIsImlhdCI6MTYyOTY2MTYzNX0.Ay7EAi4vL2eYF16a7AfylCcrOjyHkESP1ovQDyQQvKw",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
