@@ -30,7 +30,6 @@ const BillSchema = new Schema({
     },
     paid: {
         type: Boolean,
-        required: true,
         default: false
     }
 });

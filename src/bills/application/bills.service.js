@@ -1,21 +1,24 @@
-const ObjectId = require('mongodb').ObjectId;
-
 const Bill = require('../domain/Bills');
 const response = require("../../utils/response");
 const User = require("../../user/domain/User");
 const {validateBuyerBalance} = require("../utility/billUtility");
-const {verifyUsers, validateUserLogged} = require("../utility/billUtility");
+const {verifyUsers, validateUserLogged, validateBill} = require("../utility/billUtility");
 
 const createBill = async (req, res) => {
     try {
-        const {name, description, subtotal, discount, sellerEmail, buyerEmail} = req.body;
+        const {name, description, subtotal, discount, buyerEmail} = req.body;
+
+        const id = req.user.id;
+
+        let sellerEmail = await User.findOne({_id: id});
+
+        sellerEmail = sellerEmail.email;
 
         const aux = Math.floor(subtotal * discount) / 100;
 
         const total = subtotal - aux;
 
-
-        await verifyUsers(buyerEmail, sellerEmail);
+        await verifyUsers(buyerEmail);
 
         const bill = new Bill(
             {
@@ -33,23 +36,31 @@ const createBill = async (req, res) => {
 
         return res.status(201).send(response(true, bill));
     } catch (e) {
-        return res.status(400).send(response(false, e));
+        return res.status(500).send(response(false, e));
     }
 }
 
 const payBill = async (req, res) => {
 
     try {
-        const {billId, buyerId} = req.body;
 
-        const bill = await Bill.findOne({_id: new ObjectId(billId)});
+        const buyerId = req.user.id;
+
+
+        const bill = await Bill.findOne({_id: req.params.billId});
+
+        console.log(bill)
+
+        validateBill(bill);
 
         const userSeller = await User.findOne({email: bill.sellerEmail});
 
-        const userBuyer = await User.findOne({email: bill.buyerEmail});
+        const userBuyer = await User.findOne({_id: buyerId});
 
 
-        validateUserLogged(buyerId, userBuyer);
+        const buyerIdQuery = userBuyer.id.toString();
+
+        validateUserLogged(buyerId, buyerIdQuery);
 
         await verifyUsers(bill.buyerEmail, bill.sellerEmail);
 
@@ -65,7 +76,7 @@ const payBill = async (req, res) => {
 
         return res.status(200).send(response(true, bill));
     } catch (e) {
-        return res.status(400).send(response(false, e));
+        return res.status(500).send(response(false, e));
     }
 }
 

@@ -2,7 +2,10 @@ const {Router} = require('express');
 const router = Router();
 //controller
 const billController = require('./bill.controller');
-const {createBillValidator, resultRegisterValidator} = require('./bill.validator');
+const {createValidator, billValidator} = require('./bill.validator');
+const auth = require('../../middleware/auth/auth.middleware');
 
-router.post('/bill',createBillValidator,resultRegisterValidator);
-router.post('/bill/pay');
+router.post('/bill', auth, createValidator, billValidator, billController.createBill);
+router.get('/bill/pay/:billId', auth,billController.payBill);
+
+module.exports = router;
