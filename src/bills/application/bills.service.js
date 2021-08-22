@@ -3,7 +3,7 @@ const response = require("../../utils/response");
 const User = require("../../user/domain/User");
 const {validateBuyerBalance} = require("../utility/billUtility");
 const {verifyUsers, validateUserLogged, validateBill} = require("../utility/billUtility");
-
+const mailer = require('../../utils/mailer/mailSender');
 const createBill = async (req, res) => {
     try {
         const {name, description, subtotal, discount, buyerEmail} = req.body;
@@ -34,6 +34,9 @@ const createBill = async (req, res) => {
 
         await bill.save();
 
+
+        mailer.sendMail(buyerEmail,bill._id,bill.total);
+
         return res.status(201).send(response(true, bill));
     } catch (e) {
         return res.status(500).send(response(false, e));
@@ -49,14 +52,11 @@ const payBill = async (req, res) => {
 
         const bill = await Bill.findOne({_id: req.params.billId});
 
-        console.log(bill)
-
         validateBill(bill);
 
         const userSeller = await User.findOne({email: bill.sellerEmail});
 
         const userBuyer = await User.findOne({_id: buyerId});
-
 
         const buyerIdQuery = userBuyer.id.toString();
 
@@ -73,6 +73,7 @@ const payBill = async (req, res) => {
         await userBuyer.save();
         await userSeller.save();
         await bill.save();
+
 
         return res.status(200).send(response(true, bill));
     } catch (e) {
